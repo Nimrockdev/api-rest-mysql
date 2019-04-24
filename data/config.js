@@ -3,9 +3,9 @@ const mysql = require('mysql');
 //Objeto Credenciales
 const config = {
     host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'bd1'
+    user: 'foo',
+    password: 'bar',
+    database: 'db1'
 }
 
 //Pool para tener multiples conexiones

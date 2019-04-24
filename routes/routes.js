@@ -1,6 +1,7 @@
 const pool = require('../data/config');
 
 const router = app => {
+
     // Ruta 1
     app.get('/', (request, response) => {
         response.send({
@@ -8,24 +9,34 @@ const router = app => {
         });
     });
 
-    // Ruta 2
+    // Ruta 2, toda la lista
     app.get('/users', (request, response) => {
-        response.send(users);
+        pool.query('SELECT * FROM users', (error, result) => {
+            if (error) {
+                throw error;
+            } else {
+                response.send(result);
+            }
+        });
     });
+
+    // Ruta 3, con filtro ID
+    app.get('/users/:id', (request, response) => {
+        const id = request.params.id;
+
+        pool.query('SELECT * FROM users WHERE id = ?', id, (error, result) => {
+            if (error) {
+                throw error;
+            } else {
+                response.send(result);
+            }
+        });
+    });
+
 
 }
 
-const users = [{
-        id: 1,
-        name: "User 1",
-        email: "user1@mail.com",
-    },
-    {
-        id: 2,
-        name: "User 2",
-        email: "user2@mail.com",
-    },
-];
+
 
 // Export the router
 module.exports = router;
