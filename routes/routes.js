@@ -33,6 +33,17 @@ const router = app => {
         });
     });
 
+    // Ruta 4, insertar
+    app.post('/users', (request, response) => {
+        pool.query('INSERT INTO users SET ?', request.body, (error, result) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(201).send(`User added with ID: ${result.insertId}`);
+
+            }
+        });
+    });
 
 }
 
