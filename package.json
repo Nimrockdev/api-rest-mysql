@@ -1,0 +1,27 @@
+{
+    "name": "api-rest-mysql",
+    "version": "1.0.0",
+    "description": "CREATE TABLE `users` (\r   `id`       int(11)     unsigned NOT NULL AUTO_INCREMENT,\r   `name`     varchar(30) DEFAULT '',\r   `email`    varchar(50) DEFAULT '',\r   PRIMARY KEY (`id`)\r ) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Javier",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "mysql": "^2.17.1",
+        "request": "^2.88.0"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jsg8405/api-rest-mysql.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jsg8405/api-rest-mysql/issues"
+    },
+    "homepage": "https://github.com/jsg8405/api-rest-mysql#readme"
+}
