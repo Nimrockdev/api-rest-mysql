@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Convert JSON Data to HTML Table</title>
+    <style>
+        th,
+        td,
+        p,
+        input {
+            font: 14px Verdana;
+        }
+        
+        table,
+        th,
+        td {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        
+        th {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
+    <p id="showData"></p>
+</body>
+
+<script>
+    function CreateTableFromJSON() {
+        var myBooks = [{
+            "id": 1,
+            "name": "Boss",
+            "email": "boss@mail.com"
+        }, {
+            "id": 2,
+            "name": "usu",
+            "email": "user8@gmai.es"
+        }, {
+            "id": 3,
+            "name": "User 1",
+            "email": "user1@mail.com"
+        }, {
+            "id": 4,
+            "name": "User 2",
+            "email": "user2@mail.com"
+        }, {
+            "id": 5,
+            "name": "User 3",
+            "email": "user3le@mail.com"
+        }, {
+            "id": 8,
+            "name": "User8",
+            "email": "user8@gmai.es"
+        }, {
+            "id": 10,
+            "name": "User9",
+            "email": "user9@email.com"
+        }, {
+            "id": 11,
+            "name": "User64",
+            "email": "User64@email.com"
+        }, {
+            "id": 12,
+            "name": "User26",
+            "email": "User26@email.com"
+        }, {
+            "id": 13,
+            "name": "User71",
+            "email": "User71@email.com"
+        }, {
+            "id": 14,
+            "name": "User47",
+            "email": "User47@email.com"
+        }, {
+            "id": 18,
+            "name": "User12",
+            "email": "user9@email.com"
+        }, {
+            "id": 19,
+            "name": "User12",
+            "email": "user9@email.com"
+        }]
+
+        // EXTRACT VALUE FOR HTML HEADER. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+        var col = [];
+        for (var i = 0; i < myBooks.length; i++) {
+            for (var key in myBooks[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1); // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th"); // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < myBooks.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = myBooks[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+    }
+</script>
+
+</html>
